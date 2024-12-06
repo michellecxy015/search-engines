@@ -1,3 +1,4 @@
+import json
 import time
 from time import sleep
 
@@ -94,17 +95,18 @@ if __name__ == '__main__':
     chrome_driver = webdriver.Chrome(options=options)
 
     search = {
-        "game" : ["Roblox", "Minecraft", "Among Us", "Clash Royale", "Magic Tiles 3", "Pokémon Go"],
+        "game" : ["Roblox", "Minecraft", "Among Us", "Clash Royale", "Pokémon Go"],
         "cartoon" : ["Gravity Falls", "The Owl House", "Dexter's Laboratory", "SpongeBob SquarePants", "Powerpuff Girls"],
         "disney": ["Inside Out", "Elemental", "The Little Mermaid", "Turning Red", "Pirates of the Caribbean"],
         "toy":["Barbie", "Pokemon card", "Lego", "Hot Wheels", "Rubik’s Cube"]
     }
 
-    keywords = {
-        "violence" : ["bloody", "torture", "murder", "decapitation", "dismemberment", "fights"],
-        "sexual content" : ["sex", "nude", "fuck", "porn"],
-        "shock and disgusting" : ["horror", "horrible", "creepy", "dark", "dark side"]
+    search_keywords = {
+        "violence" : ["torture", "murder", "violence", "Bullying", "fights", "weapons", "gunshot", "assault"],
+        "sexual content" : ["sex", "nude", "fuck", "porn", "vulgar", "dick", "nsfw", "explicit"],
+        "shock and disgusting" : ["horror", "horrible", "creepy","creepiness","dark", "bloody", "decapitation", "dismemberment"]
     }
+
     # Search all information in dictionary
     search_info_dict = {
         "off_mode": {
@@ -138,7 +140,7 @@ if __name__ == '__main__':
     }
 
     for search_type, search_contents in search.items():
-        for keywords_type, keywords in keywords.items():
+        for keywords_type, keywords in search_keywords.items():
             for search_content in search_contents:
                 for keyword in keywords:
                     search = f"{search_content} {keyword}"
@@ -153,5 +155,6 @@ if __name__ == '__main__':
                     search_info_dict["strict_mode"][f"{search_type}_{keywords_type}"].append({
                         search: images_off_mode
                     })
-                    print(search_info_dict)
+    with open("bing_data.json", "w") as f:
+        f.write(json.dumps(search_info_dict))
     chrome_driver.close()
