@@ -55,7 +55,7 @@ This project seeks to address the following:
 ---
 
 ## How to Use
-Take Kiddle as example, the other two search engines folows a simiar workflow except for turning on and off safeSearch.
+Take Kiddle as an example. The other two search engines follow a similar workflow except for turning on and off SafeSearch.
 1. **Scrape Images**: run the `kiddle_scrape.ipynb` notebook to collect Kiddle.
 2. **Classify and Analyze**: Use the `kiddle_clip.ipynb` notebook to classify the images and generate comparative statistics.
 3. **Customize Queries**: Modify the predefined search queries or harmful keywords as needed to adapt the analysis.
